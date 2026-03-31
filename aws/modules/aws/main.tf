@@ -206,8 +206,8 @@ resource "aws_lb_listener" "http" {
 # Outputs — Ansible sẽ lấy ec2_public_ip qua HCP API
 # ==============================================================
 output "ec2_public_ip" {
-  description = "EIP của EC2 (dùng cho Ansible webhook)"
-  value       = aws_eip.web.public_ip
+  description = "EIP cố định của EC2"
+  value       = data.aws_eip.web.public_ip
 }
 
 output "alb_dns_name" {
