@@ -146,14 +146,18 @@ resource "aws_instance" "web" {
 }
 
 # ── Elastic IP ───────────────────────────────────────────────
-resource "aws_eip" "web" {
-  domain = "vpc"
-  tags   = { Name = "devops-htv-eip", Project = "Final-Lab" }
+data "aws_eip" "web" {
+  id = "eipalloc-0ba9d6bc19c2cef06"
 }
 
 resource "aws_eip_association" "web" {
   instance_id   = aws_instance.web.id
-  allocation_id = aws_eip.web.id
+  allocation_id = data.aws_eip.web.id
+}
+
+output "ec2_public_ip" {
+  description = "EIP cố định của EC2"
+  value       = data.aws_eip.web.public_ip
 }
 
 # ── ALB ───────────────────────────────────────────────────────
