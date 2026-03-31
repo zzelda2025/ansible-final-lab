@@ -155,11 +155,6 @@ resource "aws_eip_association" "web" {
   allocation_id = data.aws_eip.web.id
 }
 
-output "ec2_public_ip" {
-  description = "EIP cố định của EC2"
-  value       = data.aws_eip.web.public_ip
-}
-
 # ── ALB ───────────────────────────────────────────────────────
 resource "aws_lb" "main" {
   name               = "devops-htv-alb"
