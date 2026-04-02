@@ -36,3 +36,19 @@ variable "key_pair_name" {
   description = "Tên Key Pair đã tạo trên AWS Console"
   type        = string
 }
+
+variable "awx_url" { 
+  description = "Địa chỉ URL của máy chủ AWX"
+  type        = string 
+}
+
+variable "awx_job_id" { 
+  description = "ID của Workflow Job Template trên AWX dành riêng cho AWS"
+  type        = string 
+}
+
+variable "awx_token" { 
+  description = "Access Token của user AWX"
+  type        = string
+  sensitive   = true 
+}
