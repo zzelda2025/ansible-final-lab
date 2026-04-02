@@ -42,7 +42,7 @@ variable "awx_url" {
   type        = string 
 }
 
-variable "awx_job_id" { 
+variable "awx_workflow_id" { 
   description = "ID của Workflow Job Template trên AWX dành riêng cho AWS"
   type        = string 
 }
