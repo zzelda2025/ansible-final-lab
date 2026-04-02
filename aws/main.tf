@@ -28,11 +28,17 @@ output "alb_dns_name" {
   value       = module.aws_web.alb_dns_name
 }
 
+# ---- PHẦN TRIGGER GỌI AWX (BẢN SỬA LỖI DESTROY) ----
 resource "null_resource" "trigger_awx" {
-  # Đảm bảo chỉ chạy sau khi EC2 đã có IP thành công
+  # Chỉ chạy lại nếu IP của EC2 thay đổi
+  triggers = {
+    ec2_id = module.aws_web.ec2_public_ip
+  }
+
   depends_on = [module.aws_web]
 
   provisioner "local-exec" {
+    # Lệnh này chỉ chạy khi tạo mới, không chạy khi destroy
     command = <<EOT
       curl -X POST "${var.awx_url}/api/v2/workflow_job_templates/${var.awx_workflow_id}/launch/" \
            -H "Content-Type: application/json" \
