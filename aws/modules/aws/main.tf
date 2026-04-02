@@ -147,7 +147,7 @@ resource "aws_instance" "web" {
 
 # ── Elastic IP ───────────────────────────────────────────────
 data "aws_eip" "web" {
-  id = "eipalloc-0ba9d6bc19c2cef06"
+  id = "eipalloc-08c54a7d2783f9518"
 }
 
 resource "aws_eip_association" "web" {
